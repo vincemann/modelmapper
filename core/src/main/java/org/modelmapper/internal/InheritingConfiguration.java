@@ -176,6 +176,8 @@ public class InheritingConfiguration implements Configuration {
       return false;
     if (!getDestinationNamingConvention().equals(other.getDestinationNamingConvention()))
       return false;
+    if (!getMatchingStrategy().equals(other.getMatchingStrategy()))
+      return false;
     return true;
   }
 
@@ -287,6 +289,7 @@ public class InheritingConfiguration implements Configuration {
     result = prime * result + getDestinationNameTransformer().hashCode();
     result = prime * result + getSourceNamingConvention().hashCode();
     result = prime * result + getDestinationNamingConvention().hashCode();
+    result = prime * result + getMatchingStrategy().hashCode();
     result = prime * result + getFieldAccessLevel().hashCode();
     result = prime * result + getMethodAccessLevel().hashCode();
     result = prime * result + (isFieldMatchingEnabled() ? 1231 : 1237);
