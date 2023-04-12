@@ -76,11 +76,13 @@ class TypeInfoRegistry {
   @SuppressWarnings("unchecked")
   static <T> TypeInfoImpl<T> typeInfoFor(Class<T> sourceType, InheritingConfiguration configuration) {
     TypeInfoKey pair = new TypeInfoKey(sourceType, configuration);
-    TypeInfoImpl<T> typeInfo = (TypeInfoImpl<T>) cache.get(pair);
+//    TypeInfoImpl<T> typeInfo = (TypeInfoImpl<T>) cache.get(pair);
+    System.err.println("calling cache: " + cache.get(pair));
+    TypeInfoImpl<T> typeInfo = null;
 
     if (typeInfo == null) {
       synchronized (cache) {
-        typeInfo = (TypeInfoImpl<T>) cache.get(pair);
+//        typeInfo = (TypeInfoImpl<T>) cache.get(pair);
         if (typeInfo == null) {
           typeInfo = new TypeInfoImpl<T>(null, sourceType, configuration);
           cache.put(pair, typeInfo);

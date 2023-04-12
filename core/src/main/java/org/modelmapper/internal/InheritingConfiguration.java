@@ -156,28 +156,53 @@ public class InheritingConfiguration implements Configuration {
   @Override
   @SuppressWarnings("all")
   public boolean equals(Object obj) {
-    if (this == obj)
+    System.err.println("checking if configs are equal:");
+    System.err.println("this: " + this.toString());
+    System.err.println("other: " + obj == null ? "null" : obj.toString());
+    if (this == obj){
+      System.err.println("equal bc same ref");
       return true;
-    if (obj == null || getClass() != obj.getClass())
+    }
+    if (obj == null || getClass() != obj.getClass()){
+      System.err.println("not equal bc diff class or other null");
       return false;
+    }
 
     InheritingConfiguration other = (InheritingConfiguration) obj;
-    if (!getSourceNameTransformer().equals(other.getSourceNameTransformer()))
+    if (!getSourceNameTransformer().equals(other.getSourceNameTransformer())) {
+      System.err.println("not considered equal");
       return false;
-    if (!getDestinationNameTransformer().equals(other.getDestinationNameTransformer()))
+    }
+    if (!getDestinationNameTransformer().equals(other.getDestinationNameTransformer())) {
+      System.err.println("not considered equal");
       return false;
-    if (getFieldAccessLevel() != other.getFieldAccessLevel())
+    }
+    if (getFieldAccessLevel() != other.getFieldAccessLevel()) {
+      System.err.println("not considered equal");
       return false;
-    if (getMethodAccessLevel() != other.getMethodAccessLevel())
+    }
+    if (getMethodAccessLevel() != other.getMethodAccessLevel()){
+      System.err.println("not considered equal");
       return false;
-    if (isFieldMatchingEnabled() != other.isFieldMatchingEnabled())
+    }
+    if (isFieldMatchingEnabled() != other.isFieldMatchingEnabled()) {
+      System.err.println("not considered equal");
       return false;
-    if (!getSourceNamingConvention().equals(other.getSourceNamingConvention()))
+    }
+    if (!getSourceNamingConvention().equals(other.getSourceNamingConvention())) {
+      System.err.println("not considered equal");
       return false;
+    }
     if (!getDestinationNamingConvention().equals(other.getDestinationNamingConvention()))
+    {
+      System.err.println("not considered equal");
       return false;
-    if (!getMatchingStrategy().equals(other.getMatchingStrategy()))
+    }
+    if (!getMatchingStrategy().equals(other.getMatchingStrategy())){
+      System.err.println("not considered equal");
       return false;
+    }
+    System.err.println("is considered equal");
     return true;
   }
 
@@ -294,6 +319,36 @@ public class InheritingConfiguration implements Configuration {
     result = prime * result + getMethodAccessLevel().hashCode();
     result = prime * result + (isFieldMatchingEnabled() ? 1231 : 1237);
     return result;
+  }
+
+  @Override
+  public String toString() {
+    return "InheritingConfiguration{" +
+            "parent=" + parent +
+            ", typeMapStore=" + typeMapStore +
+            ", converterStore=" + converterStore +
+            ", valueAccessStore=" + valueAccessStore +
+            ", valueMutateStore=" + valueMutateStore +
+            ", destinationNameTokenizer=" + destinationNameTokenizer +
+            ", destinationNameTransformer=" + destinationNameTransformer +
+            ", destinationNamingConvention=" + destinationNamingConvention +
+            ", fieldAccessLevel=" + fieldAccessLevel +
+            ", matchingStrategy=" + matchingStrategy +
+            ", methodAccessLevel=" + methodAccessLevel +
+            ", provider=" + provider +
+            ", propertyCondition=" + propertyCondition +
+            ", sourceNameTokenizer=" + sourceNameTokenizer +
+            ", sourceNameTransformer=" + sourceNameTransformer +
+            ", sourceNamingConvention=" + sourceNamingConvention +
+            ", fieldMatchingEnabled=" + fieldMatchingEnabled +
+            ", ambiguityIgnored=" + ambiguityIgnored +
+            ", fullTypeMatchingRequired=" + fullTypeMatchingRequired +
+            ", implicitMatchingEnabled=" + implicitMatchingEnabled +
+            ", preferNestedProperties=" + preferNestedProperties +
+            ", skipNullEnabled=" + skipNullEnabled +
+            ", collectionsMergeEnabled=" + collectionsMergeEnabled +
+            ", useOSGiClassLoaderBridging=" + useOSGiClassLoaderBridging +
+            '}';
   }
 
   @Override
